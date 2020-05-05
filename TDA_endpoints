@@ -1,0 +1,40 @@
+
+# --------------------THE DAILY PRICES ENDPOINT----------------------
+
+# define an endpoint with a stock of your choice, MUST BE UPPER
+endpoint = r"https://api.tdameritrade.com/v1/marketdata/{}/pricehistory".format('SPY')
+
+# define the payload
+payload = {'apikey':client_id,
+           'periodType':'day',
+           'frequencyType':'minute',
+           'frequency':'1',
+           'period':'2',
+           'endDate':'1587498625000',
+           'startDate':'1587498625000',
+           'needExtendedHoursData':'true'}
+
+# make a request
+content = requests.get(url = endpoint, params = payload)
+
+# convert it dictionary object
+data = content.json()
+print("DAILY PRICES: " + str(data))
+
+#----------------- THE QUOTE ENDPOINT---------------------
+i = 1
+while i == 1:
+ time.sleep(1)
+
+ # define an endpoint with a stock of your choice, MUST BE UPPER
+ endpoint = r"https://api.tdameritrade.com/v1/marketdata/{}/quotes".format('SPY')
+
+ # define the payload
+ payload = {'apikey':client_id}
+
+ # make a request
+ content = requests.get(url = endpoint, params = payload)
+
+ # convert it dictionary object
+ data = content.json()
+ print("QUOTES: " + str(data))
